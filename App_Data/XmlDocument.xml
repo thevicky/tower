@@ -1,0 +1,2222 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tower360.API</name>
+    </assembly>
+    <members>
+        <member name="M:Tower360.API.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:Tower360.API.Areas.HelpPage.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:Tower360.API.Areas.HelpPage.Controllers.HelpController">
+            <summary>
+            The controller that will handle requests for the help page.
+            </summary>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Sets the sample directly for all actions with the specified media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,Tower360.API.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the model description generator.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns>The <see cref="T:Tower360.API.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:Tower360.API.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:Tower360.API.Areas.HelpPage.ModelDescriptions.ModelDescription">
+            <summary>
+            Describes a type model.
+            </summary>
+        </member>
+        <member name="T:Tower360.API.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
+            <summary>
+            Generates model descriptions for given types.
+            </summary>
+        </member>
+        <member name="T:Tower360.API.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
+            <summary>
+            Use this attribute to change the name of the <see cref="T:Tower360.API.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
+            </summary>
+        </member>
+        <member name="T:Tower360.API.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tower360.API.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:Tower360.API.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:Tower360.API.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:Tower360.API.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
+            <summary>
+            Gets or sets the <see cref="T:Tower360.API.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
+            </summary>
+        </member>
+        <member name="P:Tower360.API.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
+            <summary>
+            Gets or sets the documentation for the request.
+            </summary>
+        </member>
+        <member name="P:Tower360.API.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
+            <summary>
+            Gets or sets the <see cref="T:Tower360.API.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
+            </summary>
+        </member>
+        <member name="P:Tower360.API.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
+            <summary>
+            Gets the request body parameter descriptions.
+            </summary>
+        </member>
+        <member name="P:Tower360.API.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
+            <summary>
+            Gets or sets the <see cref="T:Tower360.API.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
+            </summary>
+        </member>
+        <member name="P:Tower360.API.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
+            <summary>
+            Gets the resource property descriptions.
+            </summary>
+        </member>
+        <member name="P:Tower360.API.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:Tower360.API.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:Tower360.API.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="T:Tower360.API.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tower360.API.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="P:Tower360.API.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:Tower360.API.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:Tower360.API.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="P:Tower360.API.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
+            <summary>
+            Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
+            stopping when the factory successfully returns a non-<see langref="null"/> object.
+            </summary>
+            <remarks>
+            Collection includes just <see cref="M:Tower360.API.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
+            <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
+            <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,Tower360.API.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,Tower360.API.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:Tower360.API.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:Tower360.API.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
+            one using <see cref="M:Tower360.API.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(Tower360.API.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:Tower360.API.Areas.HelpPage.ObjectGenerator"/>) and other
+            factories in <see cref="P:Tower360.API.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Resolves the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The type.</returns>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},Tower360.API.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Tower360.API.Areas.HelpPage.HelpPageSampleKey">
+            <summary>
+            This is used to identify the place where the sample should be applied.
+            </summary>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Creates a new <see cref="T:Tower360.API.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Creates a new <see cref="T:Tower360.API.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The CLR type.</param>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageSampleKey.#ctor(Tower360.API.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:Tower360.API.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:Tower360.API.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="sampleDirection">The <see cref="P:Tower360.API.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,Tower360.API.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:Tower360.API.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:Tower360.API.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The <see cref="P:Tower360.API.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="P:Tower360.API.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+            <summary>
+            Gets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:Tower360.API.Areas.HelpPage.HelpPageSampleKey.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:Tower360.API.Areas.HelpPage.HelpPageSampleKey.MediaType">
+            <summary>
+            Gets the media type.
+            </summary>
+            <value>
+            The media type.
+            </value>
+        </member>
+        <member name="P:Tower360.API.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+            <summary>
+            Gets the parameter names.
+            </summary>
+        </member>
+        <member name="P:Tower360.API.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+            <summary>
+            Gets the <see cref="P:Tower360.API.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            </summary>
+        </member>
+        <member name="T:Tower360.API.Areas.HelpPage.ImageSample">
+            <summary>
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tower360.API.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="T:Tower360.API.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:Tower360.API.Areas.HelpPage.ObjectGenerator">
+            <summary>
+            This class will create an object of a given type and populate it with sample data.
+            </summary>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+            <summary>
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
+            Complex types: POCO types.
+            Nullables: <see cref="T:System.Nullable`1"/>.
+            Arrays: arrays of simple types or complex types.
+            Key value pairs: <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            Tuples: <see cref="T:System.Tuple`1"/>, <see cref="T:System.Tuple`2"/>, etc
+            Dictionaries: <see cref="T:System.Collections.Generic.IDictionary`2"/> or anything deriving from <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            Collections: <see cref="T:System.Collections.Generic.IList`1"/>, <see cref="T:System.Collections.Generic.IEnumerable`1"/>, <see cref="T:System.Collections.Generic.ICollection`1"/>, <see cref="T:System.Collections.IList"/>, <see cref="T:System.Collections.IEnumerable"/>, <see cref="T:System.Collections.ICollection"/> or anything deriving from <see cref="T:System.Collections.Generic.ICollection`1"/> or <see cref="T:System.Collections.IList"/>.
+            Queryables: <see cref="T:System.Linq.IQueryable"/>, <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An object of the given type.</returns>
+        </member>
+        <member name="T:Tower360.API.Areas.HelpPage.SampleDirection">
+            <summary>
+            Indicates whether the sample is used for request or response
+            </summary>
+        </member>
+        <member name="T:Tower360.API.Areas.HelpPage.TextSample">
+            <summary>
+            This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:Tower360.API.Areas.HelpPage.XmlDocumentationProvider">
+            <summary>
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:Tower360.API.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tower360.API.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="M:Tower360.API.Filters.ApiResponseFilter.CreateJsonObjectHttpResponseMessage(System.Boolean,System.String)">
+            <summary> Creates response: { "success": true/false, "data": {...object...} } </summary>
+        </member>
+        <member name="M:Tower360.API.Filters.ApiResponseFilter.CreateJsonStringHttpResponseMessage(System.Boolean,System.String)">
+            <summary> Creates response: { "success": true/false, "data": "...string..." } </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetController.#ctor(Tower360.Application.Services.Asset.IAssetService,Tower360.Application.Services.Space.ISpaceService,Tower360.Application.Services.AssetObject.IAssetObjectService,Tower360.Application.Services.Floor.IFloorService)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetController.GetAssetsAsync(System.Nullable{System.Int32})">
+            <summary>
+            Returns list of available assets.
+            If user is an admin then return all assets for specified broker or for all brokers (if broker id is not specified)
+            If user is a regular user then returns assets for his broker, if another broker is specified then return 403
+            </summary>
+            <param name="brokerId">Optional, id of the broker to get assets for</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetController.GetAssetsAsync(System.Int32[],System.Int32[],System.String[],System.Int32[],System.Nullable{System.Int32})">
+            <summary>
+            Returns list of available assets.
+            If user is an admin then return all assets for specified broker or for all brokers (if broker id is not specified)
+            If user is a regular user then returns assets for his broker, if another broker is specified then return 403
+            </summary>
+            <param name="ct">Cities to filter</param>
+            <param name="brokerId">Optional, id of the broker to get assets for</param>
+            <param name="assets">Asset ids to filter</param>
+            <param name="mr">Markets to filter</param>
+            <param name="assetStates">Asset state ids to filter</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetController.GetAsset(System.Int32)">
+            <summary>
+            Returns data for specified asset without nested collections
+            Check that requested asset is managed by broker of the user if he is not an admin
+            Admin: return asset data for any broker
+            </summary>
+            <param name="id">Id of the asset</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetController.GetFullAsset(System.Int32)">
+            <summary>
+            Returns data for specified asset with nested collections
+            Check that requested asset is managed by broker of the user if he is not an admin
+            Admin: return asset data for any broker
+            </summary>
+            <param name="id">Id of the asset</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetController.CreateAsset">
+            <summary>
+            Create a new asset using CreateAssetRequest
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetController.UpdateAsset(System.Int32,Tower360.Application.DTO.AssetAgg.UpdateAssetRequest)">
+            <summary>
+            Update existing asset using UpdateAssetRequest
+            </summary>
+            <param name="id"></param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetController.MoveToArchiveAsset(System.Int32)">
+            <summary>
+            Move asset to Archive
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetController.SetImage(System.Int32)">
+            <summary>
+            Set image for asset (multipart/form-data)
+            </summary>
+            <param name="assetId">Asset Id</param>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetController.ResetImage(System.Int32)">
+            <summary>
+            Reset image for asset
+            </summary>
+            <param name="assetId">Asset Id</param>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetController.GetAssetRanges(System.Int32)">
+            <summary>
+            Get Asset spaces ranges
+            </summary>
+            <param name="assetId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetController.FindByCriteria(System.Int32[],System.String,System.String[],System.Int32[],System.String,System.Nullable{System.Int32},System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="markets">List of markets</param>
+            <param name="cities">List of cities</param>
+            <param name="assets">List of asset Ids</param>
+            <param name="assetFilter">Filter assets by name and address</param>
+            <param name="srt">Sort By: name, city, totalArea, occupancy</param>
+            <param name="ord">Sort Order: 0 - ASC, 1- DESC</param>
+            <param name="pg">Page number</param>
+            <param name="ps">Page size</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetController.GetStatistics(System.Nullable{System.Int32})">
+            <summary>
+            Get extended statistics for asset or all assets of user's broker
+            </summary>
+            <param name="assetId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetController.GetCities">
+            <summary>
+            Returns Asset's cities
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetController.GetSpacesStatsByCriteria(System.Int32[],System.String[],System.Int32[])">
+            <summary>
+            Returns global asset statistics for specific criteria.
+            </summary>
+            <param name="assetIds">Array of asset ids</param>
+            <param name="marketIds">Array of market ids</param>
+            <param name="cities">Array of city names</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetController.GetMarkets">
+            <summary>
+            Returns markets associated with assets
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetController.CheckRequirementsForArchiving(System.Int32)">
+            <summary>
+            Check requirements for archiving
+            </summary>
+            <param name="id">Asset Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetController.CheckRequirementsForBrokerChanging(System.Int32)">
+            <summary>
+            Check requirements for archiving
+            </summary>
+            <param name="id">Asset Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ExportDataController.ExportActiveDeals(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32[],System.Int32[],System.Int32[],System.Int32[],System.String[],System.String,System.Nullable{System.Int32})">
+            <summary>
+            Export active deals
+            </summary>
+            <param name="ot">Array of Space Types Ids</param>
+            <param name="ind">Array of Client Industry Ids</param>
+            <param name="agte">Area From</param>
+            <param name="alte">Area To</param>
+            <param name="assetIds">Asset Ids</param>
+            <param name="ct">Cities</param>
+            <param name="mr">Market Ids</param>
+            <param name="srt">Sort By: name, startDate, status</param>
+            <param name="ord">Sort Order: 0 - ASC, 1- DESC</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ExportDataController.ExportExecutedDeals(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32[],System.Int32[],System.Int32[],System.Int32[],System.String[],System.String,System.Nullable{System.Int32})">
+            <summary>
+            Export executed deals
+            </summary>
+            <param name="ot">Array of Space Types Ids</param>
+            <param name="ind">Array of Client Industry Ids</param>
+            <param name="agte">Area From</param>
+            <param name="alte">Area To</param>
+            <param name="assetIds">Asset Ids</param>
+            <param name="ct">Cities</param>
+            <param name="mr">Market Ids</param>
+            <param name="srt">Sort By: name, startDate, status</param>
+            <param name="ord">Sort Order: 0 - ASC, 1- DESC</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ExportDataController.ExportDeadDeals(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32[],System.Int32[],System.Int32[],System.Int32[],System.String[],System.String,System.Nullable{System.Int32})">
+            <summary>
+            Export executed deals
+            </summary>
+            <param name="ot">Array of Space Types Ids</param>
+            <param name="ind">Array of Client Industry Ids</param>
+            <param name="agte">Area From</param>
+            <param name="alte">Area To</param>
+            <param name="assetIds">Asset Ids</param>
+            <param name="ct">Cities</param>
+            <param name="mr">Market Ids</param> 
+            <param name="srt">Sort By: name, startDate, status</param>
+            <param name="ord">Sort Order: 0 - ASC, 1- DESC</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ExportDataController.ExportAllUnits(System.Int32[],System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32[],System.Int32[],System.Int32[],System.String[],System.String,System.Nullable{System.Int32})">
+            <summary>
+            Export all units by specific criteria.
+            </summary>
+            <param name="assets">Array of asset Ids</param>
+            <param name="av">Space availability. 1 - all, 2 - not available, 3 - available</param>
+            <param name="st">Space Status. 1 - vacant, 2 - occupied, 3 - reserved</param>
+            <param name="agte">Area From</param>
+            <param name="alte">Area To</param>
+            <param name="apgte">Asking Price From</param>
+            <param name="aplte">Asking Price To</param>
+            <param name="ipgte">In-Place Price From</param>
+            <param name="iplte">In-Place Price To</param>
+            <param name="expgte">Contract Expiration Date From</param>
+            <param name="explte">Contract Expiration Date To</param>
+            <param name="fgte">Floor From. TBD</param>
+            <param name="flte">Floor To. TBD</param>
+            <param name="twr">Array of AssetObject Ids</param>
+            <param name="ot">Array of Space Types Ids</param>
+            <param name="mr">Array of Markets</param>
+            <param name="ct">Array of City names</param>
+            <param name="srt">Sort By: unit, tower, floor, area, type, price, availability, tenant, expiry</param>
+            <param name="ord">Sort Order: 0 - ASC, 1- DESC</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ExportDataController.ExportAvailableUnits(System.Int32[],System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32[],System.Int32[],System.Int32[],System.String[],System.String,System.Nullable{System.Int32})">
+            <summary>
+            Export all units by specific criteria.
+            </summary>
+            <param name="assets">Array of asset Ids</param>
+            <param name="av">Space availability. 1 - all, 2 - not available, 3 - available</param>
+            <param name="st">Space Status. 1 - vacant, 2 - occupied, 3 - reserved</param>
+            <param name="agte">Area From</param>
+            <param name="alte">Area To</param>
+            <param name="apgte">Asking Price From</param>
+            <param name="aplte">Asking Price To</param>
+            <param name="ipgte">In-Place Price From</param>
+            <param name="iplte">In-Place Price To</param>
+            <param name="expgte">Contract Expiration Date From</param>
+            <param name="explte">Contract Expiration Date To</param>
+            <param name="fgte">Floor From. TBD</param>
+            <param name="flte">Floor To. TBD</param>
+            <param name="twr">Array of AssetObject Ids</param>
+            <param name="ot">Array of Space Types Ids</param>
+            <param name="mr">Array of Markets</param>
+            <param name="ct">Array of City names</param>
+            <param name="srt">Sort By: unit, tower, floor, area, type, price, availability, tenant, expiry</param>
+            <param name="ord">Sort Order: 0 - ASC, 1- DESC</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ExportDataController.ExportUnAvailableUnits(System.Int32[],System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32[],System.Int32[],System.Int32[],System.String[],System.String,System.Nullable{System.Int32})">
+            <summary>
+            Export all units by specific criteria.
+            </summary>
+            <param name="assets">Array of asset Ids</param>
+            <param name="av">Space availability. 1 - all, 2 - not available, 3 - available</param>
+            <param name="st">Space Status. 1 - vacant, 2 - occupied, 3 - reserved</param>
+            <param name="agte">Area From</param>
+            <param name="alte">Area To</param>
+            <param name="apgte">Asking Price From</param>
+            <param name="aplte">Asking Price To</param>
+            <param name="ipgte">In-Place Price From</param>
+            <param name="iplte">In-Place Price To</param>
+            <param name="expgte">Contract Expiration Date From</param>
+            <param name="explte">Contract Expiration Date To</param>
+            <param name="fgte">Floor From. TBD</param>
+            <param name="flte">Floor To. TBD</param>
+            <param name="twr">Array of AssetObject Ids</param>
+            <param name="mr">Array of Markets</param>
+            <param name="ot">Array of Space Types Ids</param>
+            <param name="ct">Array of City names</param>
+            <param name="srt">Sort By: unit, tower, floor, area, type, price, availability, tenant, expiry</param>
+            <param name="ord">Sort Order: 0 - ASC, 1- DESC</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ExportDataController.ExportInPlaceContracts(System.Int32[],System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.String,System.Int32[],System.Int32[],System.Int32[],System.Int32[],System.String[],System.String,System.Nullable{System.Int32})">
+            <summary>
+            Export In-Place contracts
+            </summary>
+            <param name="assets">Array of Asset Ids</param>
+            <param name="st">Space status. 0 - active, 1 - expired, 2 - incoming, 3 - archived. 0 by default.</param>
+            <param name="ipgte">In-Place Price From</param>
+            <param name="iplte">In-Place Price To</param>
+            <param name="expgte">Contract Expiration Date From</param>
+            <param name="explte">Contract Expiration Date To</param>
+            <param name="stgte">Contract Start Date From</param>
+            <param name="stlte">Contract Start Date To</param>
+            <param name="twr">Array of AssetObject Ids</param>
+            <param name="ot">Array of Space Types Ids</param>
+            <param name="ind">Array of Client Industry Ids</param>
+            <param name="mr">Array of Markets</param>
+            <param name="ct">Array of City names</param>
+            <param name="srt">Sort By: name, startDate, endDate, totalArea, totalCost, avgMeterCost</param>
+            <param name="ord">Sort Order: 0 - ASC, 1- DESC</param>
+            <param name="name">Tenant name</param>
+            <returns>ContractSearchResultDTO</returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ExportDataController.ExportInComingContracts(System.Int32[],System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.String,System.Int32[],System.Int32[],System.Int32[],System.Int32[],System.String[],System.String,System.Nullable{System.Int32})">
+            <summary>
+            Export In-Coming contracts
+            </summary>
+            <param name="assets">Array of Asset Ids</param>
+            <param name="st">Space status. 0 - active, 1 - expired, 2 - incoming, 3 - archived. 0 by default.</param>
+            <param name="ipgte">In-Place Price From</param>
+            <param name="iplte">In-Place Price To</param>
+            <param name="expgte">Contract Expiration Date From</param>
+            <param name="explte">Contract Expiration Date To</param>
+            <param name="stgte">Contract Start Date From</param>
+            <param name="stlte">Contract Start Date To</param>
+            <param name="twr">Array of AssetObject Ids</param>
+            <param name="ot">Array of Space Types Ids</param>
+            <param name="ind">Array of Client Industry Ids</param>
+            <param name="mr">Array of Markets</param>
+            <param name="ct">Array of City names</param>
+            <param name="srt">Sort By: name, startDate, endDate, totalArea, totalCost, avgMeterCost</param>
+            <param name="ord">Sort Order: 0 - ASC, 1- DESC</param>
+            <param name="name">Tenant name</param>
+            <returns>ContractSearchResultDTO</returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ExportDataController.ExportExpiredContracts(System.Int32[],System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.String,System.Int32[],System.Int32[],System.Int32[],System.Int32[],System.String[],System.String,System.Nullable{System.Int32})">
+            <summary>
+            Export Expired contracts
+            </summary>
+            <param name="assets">Array of Asset Ids</param>
+            <param name="st">Space status. 0 - active, 1 - expired, 2 - incoming, 3 - archived. 0 by default.</param>
+            <param name="ipgte">In-Place Price From</param>
+            <param name="iplte">In-Place Price To</param>
+            <param name="expgte">Contract Expiration Date From</param>
+            <param name="explte">Contract Expiration Date To</param>
+            <param name="stgte">Contract Start Date From</param>
+            <param name="stlte">Contract Start Date To</param>
+            <param name="twr">Array of AssetObject Ids</param>
+            <param name="ot">Array of Space Types Ids</param>
+            <param name="ind">Array of Client Industry Ids</param>
+            <param name="mr">Array of Markets</param>
+            <param name="ct">Array of City names</param>
+            <param name="srt">Sort By: name, startDate, endDate, totalArea, totalCost, avgMeterCost</param>
+            <param name="ord">Sort Order: 0 - ASC, 1- DESC</param>
+            <param name="name">Tenant name</param>
+            <returns>ContractSearchResultDTO</returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ExportDataController.ExportArchivedContracts(System.Int32[],System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.String,System.Int32[],System.Int32[],System.Int32[],System.Int32[],System.String[],System.String,System.Nullable{System.Int32})">
+            <summary>
+            Export Archived contracts
+            </summary>
+            <param name="assets">Array of Asset Ids</param>
+            <param name="st">Space status. 0 - active, 1 - expired, 2 - incoming, 3 - archived. 0 by default.</param>
+            <param name="ipgte">In-Place Price From</param>
+            <param name="iplte">In-Place Price To</param>
+            <param name="expgte">Contract Expiration Date From</param>
+            <param name="explte">Contract Expiration Date To</param>
+            <param name="stgte">Contract Start Date From</param>
+            <param name="stlte">Contract Start Date To</param>
+            <param name="twr">Array of AssetObject Ids</param>
+            <param name="ot">Array of Space Types Ids</param>
+            <param name="ind">Array of Client Industry Ids</param>
+            <param name="mr">Array of Markets</param>
+            <param name="ct">Array of City names</param>
+            <param name="srt">Sort By: name, startDate, endDate, totalArea, totalCost, avgMeterCost</param>
+            <param name="ord">Sort Order: 0 - ASC, 1- DESC</param>
+            <param name="name">Tenant name</param>
+            <returns>ContractSearchResultDTO</returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ExportDataController.ExportMarketplaceActiveClients(System.Int32[],System.Int32[],System.Int32[],System.String[],System.String,System.Nullable{System.Int32})">
+            <summary>
+            Marketplace. Export active clients
+            </summary>
+            <param name="ind">Array of Client Industry Ids</param>
+            <param name="assets">Array of Deal Option Asset Ids</param>
+            <param name="srt">Sort By: name, startDate, status</param>
+            <param name="ord">Sort Order: 0 - ASC, 1- DESC</param>
+            <param name="ct">Array Cities</param>
+            <param name="mr">Array of Market Ids</param>
+        </member>
+        <member name="M:Tower360.API.WebServices.ExportDataController.ExportMarketplacePastClients(System.Int32[],System.Int32[],System.Int32[],System.String[],System.String,System.Nullable{System.Int32})">
+            <summary>
+            Marketplace. Export past clients
+            </summary>
+            <param name="ind">Array of Client Industry Ids</param>
+            <param name="assets">Array of Deal Option Asset Ids</param>
+            <param name="srt">Sort By: name, startDate, status</param>
+            <param name="ord">Sort Order: 0 - ASC, 1- DESC</param>
+            <param name="ct">Array Cities</param>
+            <param name="mr">Array of Market Ids</param>
+        </member>
+        <member name="M:Tower360.API.WebServices.ExportDataController.ExportMarketplaceAllClients(System.Int32[],System.Int32[],System.Int32[],System.String[],System.String,System.Nullable{System.Int32})">
+            <summary>
+            Marketplace. Export all clients
+            </summary>
+            <param name="ind">Array of Client Industry Ids</param>
+            <param name="assets">Array of Deal Option Asset Ids</param>
+            <param name="srt">Sort By: name, startDate, status</param>
+            <param name="ord">Sort Order: 0 - ASC, 1- DESC</param>
+            <param name="ct">Array Cities</param>
+            <param name="mr">Array of Market Ids</param>
+        </member>
+        <member name="T:Tower360.API.WebServices.FunnelController">
+            <summary>
+            Funnel Analysis controller
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.FunnelController.#ctor(Tower360.Application.Services.Funnel.IFunnelService)">
+            <summary>
+            Default Controller
+            </summary>
+            <param name="funnelService"></param>
+        </member>
+        <member name="M:Tower360.API.WebServices.FunnelController.GetDealStats(System.Int32[],System.Int32[],System.String[])">
+            <summary>
+            Returns funnel deals analysis
+            </summary>
+            <param name="assetIds">Array of Asset Ids</param>
+            <param name="ct">Array of City names</param>
+            <param name="mr">Array of Market Ids</param>
+            <returns></returns>
+        </member>
+        <member name="T:Tower360.API.WebServices.LandlordController">
+            <summary>
+            Set of web service for Landlord entity
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.LandlordController.#ctor(Tower360.Application.Services.Landlord.ILandlordService)">
+            <summary>
+            Default constructor
+            </summary>
+            <param name="landlordService"></param>
+        </member>
+        <member name="M:Tower360.API.WebServices.LandlordController.CreateLandlord(Tower360.Application.DTO.LandlordAgg.CreateLandlordRequest)">
+            <summary>
+            Create a new landlord using CreateLandlordRequest
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.LandlordController.GetLandlords(System.Nullable{System.Int32})">
+            <summary>
+            Get all landlords
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Tower360.API.WebServices.DealCommentController">
+            <summary>
+            Contract CommentController controller
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealCommentController.#ctor(Tower360.Application.Services.DealComment.IDealCommentService)">
+            <summary>
+            Default contructor
+            </summary>
+            <param name="dealCommentService"></param>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealCommentController.Create(System.Int32,Tower360.Application.DTO.DealAgg.DealCommentRequest)">
+            <summary>
+            Creates new comment
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealCommentController.GetComments(System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Returns comments list for specific contract
+            </summary>
+            <param name="offset">Comments offset. 0 by default</param>
+            <param name="count">Number of comments. 10 by default</param>
+            <param name="id">Deal Id</param>
+        </member>
+        <member name="T:Tower360.API.WebServices.ContractCommentController">
+            <summary>
+            Contract CommentController controller
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.ContractCommentController.#ctor(Tower360.Application.Services.ContractComment.IContractCommentService)">
+            <summary>
+            Default contructor
+            </summary>
+            <param name="contractCommentService"></param>
+        </member>
+        <member name="M:Tower360.API.WebServices.ContractCommentController.Create(System.Int32,Tower360.Application.DTO.ContractCommentAgg.ContractCommentRequest)">
+            <summary>
+            Creates new cooment
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ContractCommentController.GetComments(System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Returns comments list for specific contract
+            </summary>
+            <param name="offset">Comments offset. 0 by default</param>
+            <param name="count">Number of comments. 10 by default</param>
+            <param name="id">Master Contract Id</param>
+        </member>
+        <member name="T:Tower360.API.WebServices.DealDeadStageReasonController">
+            <summary>
+            Set of web services for deal dead stage Reason entities
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealDeadStageReasonController.#ctor(Tower360.Application.Services.DealDeadReason.IDealDeadReasonService)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealDeadStageReasonController.GetAll">
+            <summary>
+            Returns list of deal dead stage Reasons in the locale defined for requesting user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Tower360.API.WebServices.DealDeadStageOutcomeController">
+            <summary>
+            Set of web services for deal dead stage outcome entities
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealDeadStageOutcomeController.#ctor(Tower360.Application.Services.DealDeadOutcome.IDealDeadOutcomeService)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealDeadStageOutcomeController.GetAll">
+            <summary>
+            Returns list of deal dead stage outcomes in the locale defined for requesting user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Tower360.API.WebServices.DealStageController">
+            <summary>
+            Set of web services for deal stages entities
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealStageController.#ctor(Tower360.Application.Services.DealStage.IDealStageService)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealStageController.GetAll">
+            <summary>
+            Returns list of deal stages in the locale defined for requesting user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Tower360.API.WebServices.DealTypeController">
+            <summary>
+            Set of web services for deal types entities
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealTypeController.#ctor(Tower360.Application.Services.DealType.IDealTypeService)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealTypeController.GetAll">
+            <summary>
+            Returns list of deal types in the locale defined for requesting user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Tower360.API.WebServices.MarketplaceClientController">
+            <summary>
+            Marketplace Client Controller
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.MarketplaceClientController.#ctor(Tower360.Application.Services.Marketplace.IMarketplaceClientService)">
+            <summary>
+            Controller Constructor
+            </summary>
+            <param name="marketplaceService"></param>
+        </member>
+        <member name="M:Tower360.API.WebServices.MarketplaceClientController.GetMarketplaceActiveClients(System.Int32[],System.Int32[],System.Int32[],System.String[],System.Int32,System.Int32,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Marketplace. Search active clients
+            </summary>
+            <param name="ind">Array of Client Industry Ids</param>
+            <param name="assets">Array of Deal Option Asset Ids</param>
+            <param name="ct">Array Cities</param>
+            <param name="mr">Array of Market Ids</param>
+            <param name="srt">Sort By: name, startDate, status</param>
+            <param name="ord">Sort Order: 0 - ASC, 1- DESC</param>
+            <param name="pg">Page Number. 0 by default</param>
+            <param name="ps">Page Size. 10 by default</param>
+            <returns>MarketDTO</returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.MarketplaceClientController.GetMarketplacePastClients(System.Int32[],System.Int32[],System.Int32[],System.String[],System.Int32,System.Int32,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Marketplace. Search past clients
+            </summary>
+            <param name="ind">Array of Client Industry Ids</param>
+            <param name="assets">Array of Deal Option Asset Ids</param>
+            <param name="ct">Array Cities</param>
+            <param name="mr">Array of Market Ids</param>
+            <param name="srt">Sort By: name, startDate, status</param>
+            <param name="ord">Sort Order: 0 - ASC, 1- DESC</param>
+            <param name="pg">Page Number. 0 by default</param>
+            <param name="ps">Page Size. 10 by default</param>
+            <returns>MarketDTO</returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.MarketplaceClientController.GetMarketplaceAllClients(System.Int32[],System.Int32[],System.Int32[],System.String[],System.Int32,System.Int32,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Marketplace. Search past clients
+            </summary>
+            <param name="ind">Array of Client Industry Ids</param>
+            <param name="assets">Array of Deal Option Asset Ids</param>
+            <param name="ct">Array Cities</param>
+            <param name="mr">Array of Market Ids</param>
+            <param name="srt">Sort By: name, startDate, status</param>
+            <param name="ord">Sort Order: 0 - ASC, 1- DESC</param>
+            <param name="pg">Page Number. 0 by default</param>
+            <param name="ps">Page Size. 10 by default</param>
+            <returns>MarketDTO</returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.MarketplaceClientController.GetFullMarketplaceClient(System.Int32)">
+            <summary>
+            Marketplace. Get full client
+            </summary>
+            <param name="clientId">Marketplace Client Id</param>
+            <returns>FullMarketplaceClientDTO</returns>
+        </member>
+        <member name="T:Tower360.API.WebServices.MarketplaceDashboardController">
+            <summary>
+            Set of APIs for Marketplace area dashboard view
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.MarketplaceDashboardController.#ctor(Tower360.Application.Services.Deal.IDealService)">
+            <summary>
+            Ctor
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.MarketplaceDashboardController.GetDealStagesStats(System.String[],System.Int32[],System.Int32[])">
+            <summary>
+            Data for Marketplace Dashboard top bar analytics
+            </summary>
+            <param name="assets">Array of Asset Id</param>
+            <param name="ct">Array of City names</param>
+            <param name="mr">Array of MArketIds</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.MarketplaceDashboardController.GetTopInquires">
+            <summary>
+            Top deals (based on requirement values) in Inquiry state
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.MarketplaceDashboardController.GetTopActives">
+            <summary>
+            Top deals (based on requirement values) in Active states
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.MarketplaceDashboardController.GetRecentDeals">
+            <summary>
+            Top deals (based on requirement values) in Active states
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.MarketplaceDashboardController.GetActivityStats">
+            <summary>
+            Activity stats chart data
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Tower360.API.WebServices.MasterContractController">
+            <summary>
+            Contract Controller
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.MasterContractController.#ctor(Tower360.Application.Services.MasterContract.IMasterContractService,Tower360.Application.Services.Contract.IContractService,Tower360.Application.Services.Client.IClientService)">
+            <summary>
+            Default contructor
+            </summary>
+            <param name="masterContractService"></param>
+            <param name="contractService"></param>
+            <param name="clientService"></param>
+        </member>
+        <member name="M:Tower360.API.WebServices.MasterContractController.GetDocument(System.Int32,System.Int32)">
+            <summary>
+            Upload document for master contract (multipart/form-data)
+            </summary>
+            <param name="contractId">Master contract Id</param>
+            <param name="attachmentId">Master contract attachment Id</param>
+        </member>
+        <member name="M:Tower360.API.WebServices.MasterContractController.UploadDocument(System.Int32,System.Int32)">
+            <summary>
+            Upload document for master contract (multipart/form-data)
+            </summary>
+            <param name="contractId">Master contract Id</param>
+            <param name="documentTypeId">Attachment type Id</param>
+        </member>
+        <member name="M:Tower360.API.WebServices.MasterContractController.DeleteDocument(System.Int32,System.Int32)">
+            <summary>
+            Delete document for master contract
+            </summary>
+            <param name="contractId">Master contract Id</param>
+            <param name="attachmentId">Master contract attachment Id</param>
+        </member>
+        <member name="M:Tower360.API.WebServices.MasterContractController.GetFileTypes">
+            <summary>
+            Get attachment document types wtih localization
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.MasterContractController.UpdateContractDates(System.Int32,Tower360.Application.DTO.MasterContractAgg.UpdateMasterContractDatesRequest)">
+            <summary>
+            Updates Contract's Start DAte, End Date
+            </summary>
+            <param name="id">Master contract Id</param>
+            <param name="request">Request with dates</param>
+        </member>
+        <member name="M:Tower360.API.WebServices.MasterContractController.ArchiveContract(System.Int32)">
+            <summary>
+            Archive tenant
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.MasterContractController.RestoreContract(System.Int32)">
+            <summary>
+            Unarchive tenant
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.MasterContractController.GetSpacesStatsByCriteria(System.Int32[],System.String[],System.Int32[])">
+            <summary>
+            Returns global tenants statistics for specific criteria.
+            </summary>
+            <param name="assetIds">Array of asset ids</param>
+            <param name="marketIds">Array of market ids</param>
+            <param name="cities">Array of city names</param>
+            <returns></returns>
+        </member>
+        <member name="T:Tower360.API.WebServices.IndustryController">
+            <summary>
+            Industry Controller
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.IndustryController.#ctor(Tower360.Application.Services.Industry.IIndustryService)">
+            <summary>
+            Default contructor
+            </summary>
+            <param name="industryService"></param>
+        </member>
+        <member name="M:Tower360.API.WebServices.IndustryController.GetAll">
+            <summary>
+            Returns list of industries in the locale defined for requesting user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.CacheController.GetCacheStatistics">
+            <summary>
+            Returns basic cache usage statistics (hits, misses, items, etc)
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.CacheController.ClearCache(Tower360.Application.DTO.Cache.ClearCacheRequest)">
+            <summary>
+            Clears cache
+            </summary>
+            <param name="secret">Secret key to perform the operation</param>
+        </member>
+        <member name="T:Tower360.API.WebServices.ContractController">
+            <summary>
+            Contract Controller
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.ContractController.#ctor(Tower360.Application.Services.Contract.IContractService)">
+            <summary>
+            Default contructor
+            </summary>
+            <param name="contractService"></param>
+        </member>
+        <member name="M:Tower360.API.WebServices.ContractController.FindContractsByCriteria(System.Int32[],System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.String,System.Int32[],System.Int32[],System.Int32[],System.String[],System.Int32[],System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Returns list of contracts by specific criteria.
+            </summary>
+            <param name="assets">Array of Asset Ids</param>
+            <param name="st">Space status. 0 - active, 1 - expired, 2 - incoming, 3 - archived. 0 by default.</param>
+            <param name="ipgte">In-Place Price From</param>
+            <param name="iplte">In-Place Price To</param>
+            <param name="expgte">Contract Expiration Date From</param>
+            <param name="explte">Contract Expiration Date To</param>
+            <param name="stgte">Contract Start Date From</param>
+            <param name="stlte">Contract Start Date To</param>
+            <param name="twr">Array of AssetObject Ids</param>
+            <param name="ot">Array of Space Types Ids</param>
+            <param name="ind">Array of Client Industry Ids</param>
+            <param name="ct">Array of City names</param>
+            <param name="mr">Array of Market Ids</param>
+            <param name="srt">Sort By: name, startDate, endDate, totalArea, totalCost, avgMeterCost</param>
+            <param name="ord">Sort Order: 0 - ASC, 1- DESC</param>
+            <param name="pg">Page Number. 0 by default</param>
+            <param name="ps">Page Size. 10 by default</param>
+            <param name="name">Tenant name</param>
+            <returns>ContractSearchResultDTO</returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ContractController.GetContract(System.Int32)">
+            <summary>
+            Get contract by contract Id and asset Id
+            </summary>
+            <param name="contractId">contract Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ContractController.GetFullContract(System.Int32)">
+            <summary>
+            Get contract by contract Id and asset Id
+            </summary>
+            <param name="contractId">contract Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ContractController.GetContractsStatsByCriteria(System.Int32[],System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.String,System.Int32[],System.Int32[],System.Int32[])">
+            <summary>
+            Returns contract's statistics by specific criteria.
+            </summary>
+            <param name="assets">Array of Asset Ids</param>
+            <param name="st">Space status. 0 - active, 1 - expired. 0 by default.</param>
+            <param name="ipgte">In-Place Price From</param>
+            <param name="iplte">In-Place Price To</param>
+            <param name="expgte">Contract Expiration Date From</param>
+            <param name="explte">Contract Expiration Date To</param>
+            <param name="stgte">Contract Start Date From</param>
+            <param name="stlte">Contract Start Date To</param>
+            <param name="twr">Array of AssetObject Ids</param>
+            <param name="ot">Array of Space Types Ids</param>
+            <param name="ind">Array of Client Industry Ids</param>
+            <param name="name">Tenant name</param>
+            <returns>ContractSearchResultDTO</returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ContractController.UpdateSpaceContract(System.Int32,System.Int32,Tower360.Application.DTO.ContractAgg.UpdateSpaceContractRequest)">
+            <summary>
+            Updates Contract's basic data
+            </summary>
+            <param name="contractId">Contract Id</param>
+            <param name="spaceId">Space Id</param>
+            <param name="request">Request</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ContractController.CreateContract(Tower360.Application.DTO.ContractAgg.CreateContractRequest)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ContractController.GetContractsStatsByIndustry(System.Int32[],System.String[],System.Int32[])">
+            <summary>
+            Return top 5 contract statistics grouped by industry
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Tower360.API.WebServices.MarketController">
+            <summary>
+            Market API Controller
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.MarketController.#ctor(Tower360.Application.Services.Market.IMarketService)">
+            <summary>
+            Controller Constructor
+            </summary>
+            <param name="marketService"></param>
+        </member>
+        <member name="M:Tower360.API.WebServices.MarketController.Create(Tower360.Application.DTO.MarketAgg.MarketRequest)">
+            <summary>
+            Creates new Market
+            </summary>
+            <param name="request">MarketRequest</param>
+            <returns>MarketDTO</returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.MarketController.Update(System.Int32,Tower360.Application.DTO.MarketAgg.MarketRequest)">
+            <summary>
+            Updates existing Market
+            </summary>
+            <param name="id">Market Id</param>
+            <param name="request">MarketRequest</param>
+            <returns>MarketDTO</returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.MarketController.Delete(System.Int32)">
+            <summary>
+            Deletes Market
+            </summary>
+            <param name="id">Market Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.MarketController.GetAll">
+            <summary>
+            Gets all markets
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.MarketController.Get(System.Int32)">
+            <summary>
+            Gets all markets
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.MarketController.SearchMarkets(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Search clients by names mask (SQL LIKE)
+            </summary>
+            <param name="name">Name mask</param>
+            <param name="maxResults">Optional, limit of the search result</param>
+            <returns></returns>
+        </member>
+        <member name="T:Tower360.API.WebServices.RenewalStrategyController">
+            <summary>
+            Set of web services for renewal strategy entities
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.RenewalStrategyController.#ctor(Tower360.Application.Services.RenewalStrategy.IRenewalStrategyService)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.RenewalStrategyController.GetAll">
+            <summary>
+            Returns list of renewal strategies in the locale defined for requesting user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Tower360.API.WebServices.RolloverController">
+            <summary>
+            Set of web services for rollover statistics
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.RolloverController.GetRolloverData(System.Int32[],System.String[],System.Int32[])">
+            <summary>
+            Calculates rollover statistics
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Tower360.API.WebServices.SpaceAvailabilityController">
+            <summary>
+            Space Availability Controller
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.SpaceAvailabilityController.#ctor(Tower360.Application.Services.SpaceAvailability.ISpaceAvailabilityService)">
+            <summary>
+            Default contructor
+            </summary>
+            <param name="spaceAvailabilityService"></param>
+        </member>
+        <member name="M:Tower360.API.WebServices.SpaceAvailabilityController.GetStats(System.Int32[],System.Int32[],System.String[])">
+            <summary>
+            Calculates space availabiltiy rate
+            </summary>
+            <param name="assets">Asset Ids to filter</param>
+            <param name="mr">Markets to filter</param>
+            <param name="ct">Cities to filter</param>
+            <returns></returns>
+        </member>
+        <member name="T:Tower360.API.WebServices.SpaceController">
+            <summary>
+            Space controller
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.SpaceController.#ctor(Tower360.Application.Services.Space.ISpaceService)">
+            <summary>
+            Default contructor
+            </summary>
+            <param name="spaceService"></param>
+        </member>
+        <member name="M:Tower360.API.WebServices.SpaceController.FindSpacesByCriteria(System.Int32[],System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32[],System.Int32[],System.String[],System.Int32[],System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Returns list of spaces by specific criteria.
+            </summary>
+            <param name="assets">Array of Asset Ids</param>
+            <param name="av">Space availability. 1 - all, 2 - not available, 3 - available</param>
+            <param name="st">Space Status. 1 - vacant, 2 - occupied, 3 - reserved</param>
+            <param name="agte">Area From</param>
+            <param name="alte">Area To</param>
+            <param name="apgte">Asking Price From</param>
+            <param name="aplte">Asking Price To</param>
+            <param name="ipgte">In-Place Price From</param>
+            <param name="iplte">In-Place Price To</param>
+            <param name="expgte">Contract Expiration Date From</param>
+            <param name="explte">Contract Expiration Date To</param>
+            <param name="fgte">Floor From. TBD</param>
+            <param name="flte">Floor To. TBD</param>
+            <param name="twr">Array of AssetObject Ids</param>
+            <param name="ot">Array of Space Types Ids</param>
+            <param name="ct">Array of City names</param>
+            <param name="mr">Array of MArketIds</param>
+            <param name="srt">Sort By: unit, tower, floor, area, type, price, availability, tenant, expiry</param>
+            <param name="ord">Sort Order: 0 - ASC, 1- DESC</param>
+            <param name="pg">Page Number. 0 by default</param>
+            <param name="ps">Page Size. 10 by default</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.SpaceController.GetSpacesForAsset(System.Int32)">
+            <summary>
+            Returns list of spaces for specified asset.
+            </summary>
+            <param name="assetId">Id of the asset</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.SpaceController.GetSpacesForAssetObject(System.Int32,System.Int32)">
+            <summary>
+            Returns list of spaces for specified asset object.
+            </summary>
+            <param name="assetId">Id of the asset</param>
+            <param name="assetObjectId">Id of the asset object</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.SpaceController.GetSpacesForFloor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Returns list of spaces for specified floor
+            </summary>
+            <param name="assetId">Id of the asset</param>
+            <param name="assetObjectId">Id of the asset object</param>
+            <param name="floorId">Id of the floor</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.SpaceController.GetSpaceById(System.Int32,System.Int32)">
+            <summary>
+            Returns data for specified space.
+            </summary>
+            <param name="assetId">Id of the asset</param>
+            <param name="id">Id of the space</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.SpaceController.GetFullSpaceById(System.Int32,System.Int32)">
+            <summary>
+            Returns space with all childs.
+            </summary>
+            <param name="assetId">Id of the asset</param>
+            <param name="id">Id of the space</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.SpaceController.CreateSpace(System.Int32,Tower360.Application.DTO.SpaceAgg.CreateSpaceRequest)">
+            <summary>
+            Creates new floor
+            </summary>
+            <param name="assetId">Id of the asset</param>
+            <param name="request">CreateSpaceRequest</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.SpaceController.UpdateSpace(System.Int32,System.Int32,Tower360.Application.DTO.SpaceAgg.UpdateSpaceRequest)">
+            <summary>
+            Update specified space
+            </summary>
+            <param name="assetId">Id of the asset</param>
+            <param name="id">Id of the space</param>
+            <param name="request">UpdateSpaceRequest</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.SpaceController.DeleteSpace(System.Int32,System.Int32)">
+            <summary>
+            Delete specified space
+            </summary>
+            <param name="assetId">Id of the asset</param>
+            <param name="id">Id of the space</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.SpaceController.UpdateSpaceBasicData(System.Int32,System.Int32,Tower360.Application.DTO.SpaceAgg.UpdateSpaceBasicDataRequest)">
+            <summary>
+            Update basic fields for specified space
+            </summary>
+            <param name="assetId">Id of the asset</param>
+            <param name="id">Id of the space</param>
+            <param name="request">UpdateSpaceRequest</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.SpaceController.GetSpacesStatsByCriteria(System.Int32[],System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32[],System.Int32[])">
+            <summary>
+            Returns spaces statistics for specific criteria.
+            </summary>
+            <param name="assets">Array of Asset Ids</param>
+            <param name="av">Space availability. 1 - all, 2 - occupied, 3 - vacant</param>
+            <param name="agte">Area From</param>
+            <param name="alte">Area To</param>
+            <param name="apgte">Asking Price From</param>
+            <param name="aplte">Asking Price To</param>
+            <param name="ipgte">In-Place Price From</param>
+            <param name="iplte">In-Place Price To</param>
+            <param name="expgte">Contract Expiration Date From</param>
+            <param name="explte">Contract Expiration Date To</param>
+            <param name="fgte">Floor From. TBD</param>
+            <param name="flte">Floor To. TBD</param>
+            <param name="twr">Array of AssetObject Ids</param>
+            <param name="ot">Array of Space Types Ids</param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Tower360.API.WebServices.SpaceController.GetSpacesStatsByCriteria(System.Int32[],System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32[],System.Int32[],System.String[],System.Int32[],System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})" -->
+        <member name="M:Tower360.API.WebServices.SpaceController.GetAvailableSpaces(System.Int32,System.Int32,System.Int32[])">
+            <summary>
+            Returns list of space available at specific date
+            </summary>
+            <param name="assetId">Asset Id</param>
+            <param name="assetObjectId">Asset Object Id</param>
+            <param name="spaceTypes">Array of Space Types</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.SpaceController.ArchiveUnit(System.Int32,System.Int32)">
+            <summary>
+            Archive space
+            </summary>
+            <param name="assetId"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.SpaceController.RestoreUnit(System.Int32,System.Int32)">
+            <summary>
+            Unarchive space
+            </summary>
+            <param name="assetId"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.SpaceController.CheckRequirementsForArchiving(System.Int32,System.Int32)">
+            <summary>
+            Check requirements for archiving
+            </summary>
+            <param name="assetId"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Tower360.API.WebServices.FloorController">
+            <summary>
+            Floor controller
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.FloorController.#ctor(Tower360.Application.Services.Floor.IFloorService)">
+            <summary>
+            Default contructor
+            </summary>
+            <param name="floorService"></param>
+        </member>
+        <member name="M:Tower360.API.WebServices.FloorController.GetFloorsForAsset(System.Int32)">
+            <summary>
+            Returns list of floors for specified asset.
+            </summary>
+            <param name="assetId">Id of the asset</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.FloorController.GetFloorsForAssetObject(System.Int32,System.Int32)">
+            <summary>
+            Returns list of floors for specified asset object.
+            </summary>
+            <param name="assetId">Id of the asset</param>
+            <param name="assetObjectId">Id of the asset object</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.FloorController.GetFloorById(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Returns data for specified floor.
+            </summary>
+            <param name="assetId">Id of the asset</param>
+            <param name="assetObjectId">Id of the asset object</param>
+            <param name="id">Id of the floor</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.FloorController.GetFullFloorById(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Returns floor with all spaces
+            </summary>
+            <param name="assetId">Id of the asset</param>
+            <param name="assetObjectId">Id of the asset object</param>
+            <param name="id">Id of the floor</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.FloorController.CreateFloorSet(System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Creates set of floors.
+            </summary>
+            <param name="assetId">Id of the asset</param>
+            <param name="assetObjectId">Id of the asset object</param>
+            <param name="count">Number of floors to add</param>
+            <param name="autonumerate">Autonumerate floors</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.FloorController.UpdateFloor(System.Int32,System.Int32,System.Int32,Tower360.Application.DTO.FloorAgg.UpdateFloorRequest)">
+            <summary>
+            Updates specified floor.
+            </summary>
+            <param name="assetId">Id of the asset</param>
+            <param name="assetObjectId">Id of the asset object</param>
+            <param name="id">Id of the floor</param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.FloorController.DeleteFloor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Delete floor
+            </summary>
+            <param name="assetId">Id of the asset</param>
+            <param name="assetObjectId">Id of the asset object</param>
+            <param name="id">Id of the floor</param>
+            <returns></returns>
+        </member>
+        <member name="T:Tower360.API.WebServices.AssetObjectsController">
+            <summary>
+            Asset object controller
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetObjectsController.#ctor(Tower360.Application.Services.AssetObject.IAssetObjectService)">
+            <summary>
+            Default contructor
+            </summary>
+            <param name="assetObjectService"></param>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetObjectsController.GetObjectsForAsset(System.Int32,System.Boolean)">
+            <summary>
+            Returns list of asset objects for specified asset.
+            </summary>
+            <param name="assetId">Id of the asset</param>
+            /// <param name="includeHiddenObjects">Include Objects hidden from Stacking Plan. False by default.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetObjectsController.GetObjectById(System.Int32,System.Int32)">
+            <summary>
+            Returns data for specified asset object.
+            </summary>
+            <param name="assetId">Id of the asset</param>
+            <param name="id">Id of the asset object</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetObjectsController.GetFullObjectById(System.Int32,System.Int32)">
+            <summary>
+            Returns asset object with all floors and spaces.
+            </summary>
+            <param name="assetId">Id of the asset</param>
+            <param name="id">Id of the asset object</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetObjectsController.CreateAssetObject(System.Int32,Tower360.Application.DTO.AssetObjectAgg.CreateAssetObjectRequest)">
+            <summary>
+            Creates new asset object.
+            </summary>
+            <param name="assetId">Id of the Asset</param>
+            <param name="request">CreateAssetObjectRequest</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetObjectsController.UpdateAssetObject(System.Int32,System.Int32,Tower360.Application.DTO.AssetObjectAgg.UpdateAssetObjectRequest)">
+            <summary>
+            Updates specified asset object.
+            </summary>
+            <param name="assetId">Id of the asset</param>
+            <param name="id">Id of the asset object</param>
+            <param name="request">UpdateAssetObjectRequest</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetObjectsController.DeleteAssetObject(System.Int32,System.Int32)">
+            <summary>
+            Delete specified asset object.
+            </summary>
+            <param name="assetId">Id of the asset</param>
+            <param name="id">Id of the asset object</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetObjectsController.GetAssetObjectsByMarket(System.Int32[],System.Int32[],System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Int32})">
+            <summary>
+            Returns list of asset object with units - special DTO for Deal
+            </summary>
+            <param name="marketIds">List of market id</param>
+            <param name="unitTypeIds">List of unit type id</param>
+            <param name="areaFrom">Area From</param>
+            <param name="areaTo">Area To</param>
+            <param name="availability">availability</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AssetObjectsController.GetObjects(System.Boolean)">
+            <summary>
+            Returns list of asset objects.
+            </summary>
+            <param name="onlyAvailable">Return objects with available spaces</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.RegistrationController.GetRegistration(System.String)">
+            <summary>
+            Get invitation data by token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.RegistrationController.ConfirmInvitation(System.String,Tower360.Application.DTO.RegistrationAgg.ConfirmInvitationRequest)">
+            <summary>
+            Accept infitation
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Tower360.API.WebServices.DealController">
+            <summary>
+            Set of web service for Deal entity
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealController.CreateDeal">
+            <summary>
+            Create and empty deal
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealController.UpdateOptions(System.Int32,System.Collections.Generic.IEnumerable{Tower360.Application.DTO.DealAgg.DealOptionDTO})">
+            <summary>
+            Update options for deal
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealController.DeleteOption(System.Int32,System.Int32)">
+            <summary>
+            Delete option for deal
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealController.AddContact(System.Int32,System.Int32)">
+            <summary>
+            Adds contact/representative to deal
+            </summary>
+            <param name="dealId"></param>
+            <param name="representativeId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealController.RemoveContact(System.Int32,System.Int32)">
+            <summary>
+            Removes contact/representative from deal
+            </summary>
+            <param name="dealId"></param>
+            <param name="representativeId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealController.FindByCriteria(System.Int32[],System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32[],System.Int32[],System.Int32[],System.String[],System.Int32[],System.Int32[],System.Int32[],System.Boolean,System.Int32,System.Int32,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Returns list of deals by specific criteria.
+            </summary>
+            <param name="st">Array of Deal Stages: Inquiry = 1, Viewing = 2, Negotiating = 3, Executed = 4, Dead = 5</param>
+            <param name="ot">Array of Space Types Ids</param>
+            <param name="ind">Array of Client Industry Ids</param>
+            <param name="agte">Area From</param>
+            <param name="alte">Area To</param>
+            <param name="assetIds">Asset Ids</param>
+            <param name="isDead">Is deal dead</param>
+            <param name="ct">Array of City names</param>
+            <param name="mr">Array of Market Ids</param>
+            <param name="leadUsers">Array of Lead Users Ids</param>
+            <param name="dealTypes">Array of Deal Types</param>
+            <param name="srt">Sort By: name, startDate, status</param>
+            <param name="ord">Sort Order: 0 - ASC, 1- DESC</param>
+            <param name="pg">Page Number. 0 by default</param>
+            <param name="ps">Page Size. 10 by default</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealController.GetDocument(System.Int32,System.Int32)">
+            <summary>
+            Upload document for master contract (multipart/form-data)
+            </summary>
+            <param name="id">Deal Id</param>
+            <param name="attachmentId">Master contract attachment Id</param>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealController.UploadDocument(System.Int32,System.Int32)">
+            <summary>
+            Upload document for master contract (multipart/form-data)
+            </summary>
+            <param name="id">Deal Id</param>
+            <param name="documentTypeId">Attachment type Id</param>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealController.SetStage(System.Int32,Tower360.Application.DTO.DealAgg.SetDealStageRequest)">
+            <summary>
+            Set deal stage
+            </summary>
+            <param name="dealId">Deal Id</param>
+            <param name="setDealStageRequest">Deal stage request</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealController.MakeDead(System.Int32,Tower360.Application.DTO.DealAgg.DealDeadStageRequest)">
+            <summary>
+            Set deal dead stage
+            </summary>
+            <param name="dealId">Deal Id</param>
+            <param name="dealDeadStageInfoRequest">Deal dead stage info request</param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Tower360.API.WebServices.DealController.GetHistory(System.Int32)" -->
+        <member name="M:Tower360.API.WebServices.DealController.GetDealsViewingStats(System.Int32[],System.String[],System.Int32[])">
+            <summary>
+            Get deals viewing stats
+            </summary>
+            <param name="ct">Array of City names</param>
+            <param name="mr">Array of Market Ids</param>
+            <param name="assetIds">Asset Ids</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealController.GetDealLeadUsers">
+            <summary>
+            Get deals lead users
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.DealController.Delete(System.Int32)">
+            <summary>
+            Delete deal
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Tower360.API.WebServices.BrokerController">
+            <summary>
+            Set of web service for Broker entity
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.BrokerController.#ctor(Tower360.Application.Services.Broker.IBrokerService)">
+            <summary>
+            Ctro
+            </summary>
+            <param name="brokerService"></param>
+        </member>
+        <member name="M:Tower360.API.WebServices.BrokerController.GetBrokers">
+            <summary>
+            Get all brokers
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.BrokerController.GetBroker(System.Int32)">
+            <summary>
+            Get broker by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.BrokerController.CreateBroker">
+            <summary>
+            Create a new broker using CreateBrokerRequest
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.BrokerController.UpdateBroker(System.Int32,Tower360.Application.DTO.BrokerAgg.UpdateBrokerRequest)">
+            <summary>
+            Update existing broker using UpdateBrokerRequest
+            </summary>
+            <param name="id"></param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.BrokerController.SetImage(System.Int32)">
+            <summary>
+            Set image for broker (multipart/form-data)
+            </summary>
+            <param name="brokerId">Broker Id</param>
+        </member>
+        <member name="M:Tower360.API.WebServices.BrokerController.ResetImage(System.Int32)">
+            <summary>
+            Reset image for broker
+            </summary>
+            <param name="brokerId">Broker Id</param>
+        </member>
+        <member name="M:Tower360.API.WebServices.AccountController.GetAllowedActivities">
+            <summary>
+            Get all allowed activities
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AccountController.GetCurrentUserInfo">
+            <summary>
+            Get current user information
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AccountController.GetCurrentUserSettings">
+            <summary>
+            Get current user information
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.AccountController.Logout">
+            <summary>
+            Logout current user
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.AccountController.SignIn(Tower360.Application.DTO.Account.SignInRequest)">
+            <summary>
+            Sign in request
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ClientController.CreateClient(Tower360.Application.DTO.ClientAgg.CreateClientRequest)">
+            <summary>
+            Create a new client using CreateClientRequest
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ClientController.GetClients(System.Nullable{System.Int32})">
+            <summary>
+            Get all clients
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ClientController.UpdateClient(System.Int32,Tower360.Application.DTO.ClientAgg.UpdateClientRequest)">
+            <summary>
+            Update existing client using UpdateClientRequest
+            </summary>
+            <param name="id"></param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ClientController.GetClient(System.Int32)">
+            <summary>
+            Get client by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ClientController.GetClientFull(System.Int32)">
+            <summary>
+            Get client with representativites by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ClientController.UpdateBasicClientData(System.Int32,Tower360.Application.DTO.ClientAgg.UpdateClientBasicDataRequest)">
+            <summary>
+            Update basic client data: Name, ShortName, Industry
+            </summary>
+            <param name="id"></param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.ClientController.SearchClients(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Search clients by names mask (LIKE for short name and full name)
+            </summary>
+            <param name="name">Optional, name mask</param>
+            <param name="maxResults">Optional, limit of the search result</param>
+            <returns></returns>
+        </member>
+        <member name="T:Tower360.API.WebServices.RepresentativeController">
+            <summary>
+            Set of web services to work with contacts/representatives
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.RepresentativeController.GetRepresentative(System.Int32,System.Int32)">
+            <summary>
+            Get representative by id
+            </summary>
+            <param name="id">Representative Id</param>
+            <param name="clientId">Client Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.RepresentativeController.CreateRepresentative(System.Int32,Tower360.Application.DTO.RepresentativeAgg.ClientRepresentativeRequest)">
+            <summary>
+            Create a new representative using ClientRepresentativeRequest
+            </summary>
+            <param name="request"></param>
+            <param name="clientId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.RepresentativeController.SearchRepresentatives(System.Int32,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Get client's representatives
+            </summary>
+            <param name="id">Client Id</param>
+            <param name="search">Optional, serach mask</param>
+            <param name="maxResults">Optional, Max number of results</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.RepresentativeController.UpdateRepresentative(System.Int32,System.Int32,Tower360.Application.DTO.RepresentativeAgg.ClientRepresentativeRequest)">
+            <summary>
+            Update a representative
+            </summary>
+            <param name="request"></param>
+            <param name="clientId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.RepresentativeController.DeleteRepresentative(System.Int32,System.Int32)">
+            <summary>
+            Delete a representative
+            </summary>
+            <param name="id"></param>
+            <param name="clientId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.RoleController.GetRoles">
+            <summary>
+            Get all roles
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.RoleController.GetRole(System.Int32)">
+            <summary>
+            Get role by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Tower360.API.WebServices.SpaceTypeController">
+            <summary>
+            Set of web services to deal with space/unit types
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.SpaceTypeController.#ctor(Tower360.Application.Services.SpaceType.ISpaceTypeService)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.SpaceTypeController.GetAll">
+            <summary>
+            Returns list of space types in the locale defined for requesting user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.LocaleController.GetLocales">
+            <summary>
+            Get exiting locales
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Tower360.API.WebServices.StatisticsController">
+            <summary>
+            Set of web services to deal with statistics
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.StatisticsController.#ctor(Tower360.Application.Services.Statistics.IStatisticsService)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Tower360.API.WebServices.StatisticsController.GetGlobalActiveDealsStats(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32[],System.Int32[],System.Int32[],System.String[],System.Int32[],System.Int32[],System.Int32[])">
+            <summary>
+            Returns global statistics for active deals
+            </summary>
+            <param name="ot">Array of Space Types Ids</param>
+            <param name="ind">Array of Client Industry Ids</param>
+            <param name="agte">Area From</param>
+            <param name="alte">Area To</param>
+            <param name="assets">Asset Ids</param>
+            <param name="ct">Array of City names</param>
+            <param name="mr">Array of Market Ids</param>
+            <param name="leadUsers">Array of Lead User Ids</param>
+            <param name="dealTypes">Array of Deal Types</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.StatisticsController.GetGlobalExecutedDealsStats(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32[],System.Int32[],System.Int32[],System.String[],System.Int32[],System.Int32[],System.Int32[])">
+            <summary>
+            Returns global statistics for executed deals
+            </summary>
+            <param name="ot">Array of Space Types Ids</param>
+            <param name="ind">Array of Client Industry Ids</param>
+            <param name="agte">Area From</param>
+            <param name="alte">Area To</param>
+            <param name="assets">Asset Ids</param>
+            <param name="ct">Array of City names</param>
+            <param name="mr">Array of Market Ids</param>
+            <param name="leadUsers">Array of Lead User Ids</param>
+            <param name="dealTypes">Array of Deal Types</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.StatisticsController.GetGlobalDeadDealsStats(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32[],System.Int32[],System.Int32[],System.String[],System.Int32[],System.Int32[],System.Int32[])">
+            <summary>
+            Returns global statistics for dead deals
+            </summary>
+            <param name="ot">Array of Space Types Ids</param>
+            <param name="ind">Array of Client Industry Ids</param>
+            <param name="agte">Area From</param>
+            <param name="alte">Area To</param>
+            <param name="assetIds">Asset Ids</param>
+            <param name="ct">Array of City names</param>
+            <param name="mr">Array of Market Ids</param>
+            <param name="leadUsers">Array of Lead User Ids</param>
+            <param name="dealTypes">Array of Deal Types</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.StatisticsController.GetActiveTenantsStats(System.Int32[],System.Nullable{System.Int32},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.String,System.Int32[],System.Int32[],System.Int32[],System.String[],System.Int32[])">
+            <summary>
+            Returns global statistics for active tenants
+            </summary>
+            <param name="assets">Array of Asset Ids</param>
+            <param name="st">Space status. 0 - active, 1 - expired, 2 - incoming, 3 - archived. 0 by default.</param>
+            <param name="ipgte">In-Place Price From</param>
+            <param name="iplte">In-Place Price To</param>
+            <param name="expgte">Contract Expiration Date From</param>
+            <param name="explte">Contract Expiration Date To</param>
+            <param name="stgte">Contract Start Date From</param>
+            <param name="stlte">Contract Start Date To</param>
+            <param name="twr">Array of AssetObject Ids</param>
+            <param name="ot">Array of Space Types Ids</param>
+            <param name="ind">Array of Client Industry Ids</param>
+            <param name="ct">Array of City names</param>
+            <param name="mr">Array of Market Ids</param>
+            <param name="name">Tenant name</param>
+            <returns>ContractSearchResultDTO</returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.UserController.CreateUser(Tower360.Application.DTO.UserAgg.CreateUserRequest)">
+            <summary>
+            Create a new user using CreateUserRequest
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.UserController.GetUsers(System.Nullable{System.Int32})">
+            <summary>
+            Get all users
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.UserController.GetUser(System.Int32)">
+            <summary>
+            Get user by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.UserController.UpdateUser(Tower360.Application.DTO.UserAgg.UpdateUserRequest)">
+            <summary>
+            Update existing user using UpdateUserRequest
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.UserController.ChangePassword(System.Int32,Tower360.Application.DTO.UserAgg.ChangePasswordRequest)">
+            <summary>
+            Update user's password
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.UserController.SendResetPassword(Tower360.Application.DTO.UserAgg.SendResetPasswordRequest)">
+            <summary>
+            Send email with reset password link
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.UserController.CheckResetPasswordToken(Tower360.Application.DTO.UserAgg.CheckResetPasswordTokenRequest)">
+            <summary>
+            Check user's password token
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.UserController.ResetPassword(Tower360.Application.DTO.UserAgg.ResetPasswordRequest)">
+            <summary>
+            Reset user password
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.UserController.SearchUsers(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Search users by names mask (SQL LIKE)
+            </summary>
+            <param name="name">Name mask</param>
+            <param name="brokerId">Broker Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.UserController.ResendInvitation(System.Int32)">
+            <summary>
+            Send invitation to user
+            </summary>
+            <param name="id">User Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tower360.API.WebServices.UserController.GetInvitations(System.Int32)">
+            <summary>
+            Get user invitation history
+            </summary>
+            <param name="id">User Id</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
